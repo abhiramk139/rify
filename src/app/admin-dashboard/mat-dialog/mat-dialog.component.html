@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>Hi {{user.name}}</h1>
+<div mat-dialog-content>
+
+    <div>
+        <mat-form-field>
+            <mat-icon matPrefix>person_outline</mat-icon>
+            <input autofocus matInput type="text" placeholder="Name" name="name" [(ngModel)]="user.name"
+                #name="ngModel">
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-icon matPrefix>email</mat-icon>
+            <input autofocus matInput type="text" placeholder="Email" name="email" [(ngModel)]="user.email"
+                #email="ngModel">
+        </mat-form-field>
+
+        <br />
+        <mat-form-field>
+            <mat-icon matPrefix>person_outline</mat-icon>
+            <input autofocus matInput type="text" placeholder="User Name" name="username" [(ngModel)]="user.userName"
+                #username="ngModel">
+        </mat-form-field>
+
+    </div>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()" style="float: right;
+    margin-left: 10px;">Cancel</button>
+    <button mat-button cdkFocusInitial [mat-dialog-close]="user" style="float: right;">Ok</button>
+</div>

@@ -1,0 +1,224 @@
+<mat-sidenav-container class="example-container" style="background-image: linear-gradient(white, #E0F2FF);">
+    <mat-sidenav #sidenav mode="over" [(opened)]="opened">
+
+        <mat-toolbar-row (click)="toggleMenu()" style="color:black">
+            <mat-icon (click)="toggleMenu()">menu</mat-icon> <span>Stocks</span>
+
+
+
+        </mat-toolbar-row>
+        <mat-toolbar>
+            <mat-toolbar-row (click)="toggleMenu()">
+                <mat-icon>home</mat-icon> Dashboard
+
+
+
+            </mat-toolbar-row>
+        </mat-toolbar>
+
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar style="background-image: linear-gradient(white, #E0F2FF);">
+
+            <mat-icon (click)="toggleMenu()">menu</mat-icon>
+            <!-- <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p> -->
+            <!-- <p><button mat-button (click)="sidenav.toggle()"></button></p> -->
+            <span style="color: black;">Stocks
+            </span>
+            <div style="margin-left: 90%;
+            position: absolute;">
+
+                <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="changePassword()">
+                        <mat-icon>lock</mat-icon>
+                        <span>Change password</span>
+                    </button>
+                    <button mat-menu-item (click)="signOut()">
+                        <mat-icon>logout</mat-icon>
+                        <span>Sign out</span>
+                    </button>
+
+                </mat-menu>
+            </div>
+
+
+        </mat-toolbar>
+        <ng-container *ngIf="currentRole == 'ADMIN'">
+
+            <div class="container" style="margin-top: 20px;">
+                <div class="row">
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-6">
+
+
+                        <span>
+                            <h1 style="font-size: 55px;">
+                                The easiest way to buy
+                            </h1>
+                        </span>
+                        <span>
+                            <h1 style="font-size: 55px;margin-top: 5px;">
+                                and sell stocks.
+                            </h1>
+                        </span>
+
+
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 5px;">
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-6">
+
+
+                        <span style="font-size: 24px;">
+                            Stock analysis and screening tool for investors in india.
+                        </span>
+
+
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-6">
+                        <form class="example-form" style="justify-content: center;
+                        display: flex;
+                        margin-top: 30px;">
+                            <mat-form-field class="example-full-width" appearance="fill" style="width: 100%;">
+                                <mat-label></mat-label>
+                                <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option"
+                                        (click)="assignOption(option)">
+                                        {{option.name}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+                        </form>
+
+
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-6" style="background-color: white;">
+
+                        <ng-container *ngIf="selectedStock!==undefined&&selectedStock!==null">
+
+                            <div class="container" style="padding: 20px;">
+                                <table>
+                                    <thead style="font-size: 30px;">
+                                        {{selectedStock.name}}
+                                    </thead>
+                                    <tbody style="    background-color: #eeeeee;">
+                                        <tr>
+                                            <td>
+                                                <span style="font-weight: 500;">Market Cap</span>: <span style="    font-weight: 500;
+                                               color: #d73c3c;
+                                           "> &#8377; {{selectedStock.marketCap}}</span>
+                                            </td>
+                                            <td>
+                                                <span style="font-weight: 500;">Divident Yield</span>: <span style="    font-weight: 500;
+                                                color: #d73c3c;
+                                            "> &#8377;{{selectedStock.dividentYield}}</span>
+                                            </td>
+                                            <td>
+                                                <span style="font-weight: 500;">Debt Equality</span>: <span style="    font-weight: 500;
+                                                color: #d73c3c;
+                                            ">&#8377; {{selectedStock.debtoEquity}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="mid-column">
+                                                <span style="font-weight: 500;">Current Price</span>: <span style="    font-weight: 500;
+                                                color: #d73c3c;
+                                            ">
+                                                    &#8377; {{selectedStock.currentMarketPrice}}</span>
+                                            </td>
+                                            <td  class="mid-column">
+                                                <span style="font-weight: 500;">ROCE</span>: <span style="    font-weight: 500;
+                                                color: #d73c3c;
+                                            "> &#8377;{{selectedStock.roce}}</span>
+                                            </td>
+                                            <td  class="mid-column">
+                                                <span style="font-weight: 500;">Eps</span>: <span style="    font-weight: 500;
+                                                color: #d73c3c;
+                                            "> &#8377;{{selectedStock.eps}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span style="font-weight: 500;">Stock P/E</span>: <span style="    font-weight: 500;
+                                                color: #d73c3c;
+                                            ">&#8377; {{selectedStock.stock}}</span>
+                                            </td>
+                                            <td>
+                                                <span style="font-weight: 500;">ROE</span>: <span style="    font-weight: 500;
+                                                color: #d73c3c;
+                                            "> &#8377;{{selectedStock.roe}}</span>
+                                            </td>
+                                            <td>
+                                                <span style="font-weight: 500;">Reserves</span>: <span style="    font-weight: 500;
+                                                color: #d73c3c;
+                                            ">&#8377; {{selectedStock.reserves}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td  class="mid-column">
+                                                <span style="font-weight: 500;">Debt</span>: <span style="    font-weight: 500;
+                                                color: #d73c3c;
+                                            "> &#8377;{{selectedStock.debt}}</span>
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                        </ng-container>
+
+
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </ng-container>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

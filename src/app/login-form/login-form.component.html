@@ -1,0 +1,33 @@
+<!-- </form> -->
+
+<div class="login-container">
+    <div class="login-content">
+        <mat-toolbar class="login-toolbar" color="primary">Riafy Technologies</mat-toolbar>
+        <mat-card>
+            <!-- <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()"> -->
+
+            <form fxFlex="100" method="post" #loginForm="ngForm" novalidate class="margin-top-30">
+                <mat-form-field>
+                    <mat-icon matPrefix>person_outline</mat-icon>
+                    <input autofocus type="text" matInput placeholder="Username" [(ngModel)]="email" name="email">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-icon matPrefix>lock_outline</mat-icon>
+                    <input type="password" autocomplete="false" matInput placeholder="Password"
+                        [(ngModel)]="userpassword" name="userpassword">
+                </mat-form-field>
+
+                <button type="submit" mat-raised-button color="primary" (click)="login()"
+                    style="background-color:#212f49">Login</button>
+
+                <br />
+
+                <!-- <button (click)="signUp()" type="submit" color="primary"
+                    class="mat-focus-indicator mat-raised-button mat-button-base mat-primary"
+                    style="background-color: #e7e7e7;color: black;"><span class="mat-button-wrapper">Sign
+                        Up</span></button> -->
+            </form>
+        </mat-card>
+    </div>
+</div>

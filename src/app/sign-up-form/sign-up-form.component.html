@@ -1,0 +1,74 @@
+<!-- </form> -->
+
+<div class="login-container">
+    <div class="login-content">
+        <mat-toolbar class="login-toolbar" color="primary">Rify Technologies</mat-toolbar>
+        <mat-card>
+            <!-- <form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()"> -->
+
+            <form fxFlex="100" method="post" #loginForm="ngForm" novalidate class="margin-top-30">
+                <mat-form-field>
+                    <mat-icon matPrefix>person_outline</mat-icon>
+                    <input autofocus type="text" matInput placeholder="Username" [(ngModel)]="user.userName"
+                        name="username">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-icon matPrefix>person_outline</mat-icon>
+                    <input autofocus type="text" matInput placeholder="Name" [(ngModel)]="user.name" name="name">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-icon matPrefix>email</mat-icon>
+                    <input autofocus type="text" matInput placeholder="Email" [(ngModel)]="user.email" name="email">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-icon matPrefix>lock_outline</mat-icon>
+                    <input type="password" autocomplete="false" matInput placeholder="Password"
+                        [(ngModel)]="user.password" name="userpassword">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-icon matPrefix>lock_outline</mat-icon>
+                    <input type="password" autocomplete="false" matInput placeholder="Confirm Password"
+                        [(ngModel)]="confirmPassword" name="confirm">
+                </mat-form-field>
+
+
+                <mat-radio-group aria-label="Select Gender" [(ngModel)]="user.gender" name="gender">
+                    <mat-radio-button value="MALE">Male</mat-radio-button>
+                    <mat-radio-button value="FEMALE">Female</mat-radio-button>
+                    <mat-radio-button value="OTHER">Other</mat-radio-button>
+                </mat-radio-group>
+
+                <h4>Select Education</h4>
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose an option</mat-label>
+                    <mat-select [(ngModel)]="user.education" name="education">
+                        <mat-option value="option1">PUC</mat-option>
+                        <mat-option value="option2">UG</mat-option>
+                        <mat-option value="option3">PG</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <h4>Select Hobbies</h4>
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose an option</mat-label>
+                    <mat-select [(ngModel)]="user.hobbies" name="hobbie" multiple>
+                        <mat-option value="option1">Reading</mat-option>
+                        <mat-option value="option2">Sports</mat-option>
+                        <mat-option value="option3">Contributing to Open source code.</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <button type="submit" mat-raised-button color="primary" (click)="register()"
+                    style="background-color:#212f49">Register</button>
+
+                <br />
+
+
+            </form>
+        </mat-card>
+    </div>
+</div>
